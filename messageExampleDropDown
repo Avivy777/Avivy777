@@ -1,0 +1,33 @@
+{
+"fill_from_exchange": {
+"order_data": {
+"id": {
+    "gw_order_id": {
+        "gw_id": 123,
+        "gw_order_id": 1
+        },
+    "account_id": 456,
+    "bo_account_id": 11111
+},
+    "final_asset_id": 2,
+    "price": 10,
+    "quantity": 5,
+    "side": "Buy",
+    "order_status": "PartiallyFilled",
+    "tif": "None",
+    "client_order_id": "ExchangeID",
+    "trader_liquidity_type": "Making",
+    "exchange_liquidity_type": null
+},
+    "fill": {
+    "filled_quantity": 4,
+    "fill_price": 9.5,
+    "exchange_exec_id": "exchange_exec_id",
+    "exchange_timestamp_epoch_nanos": null
+    }
+},
+"cancel": null,
+"accepted_by_exchange": null,
+"accepted_by_jupiter": null,
+"virtual_fill": null
+}
