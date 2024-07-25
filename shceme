@@ -1,0 +1,683 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "OrderData": {
+            "type": "object",
+            "properties": {
+                "client_order_id": {
+                    "type": "string"
+                },
+                "exchange_liquidity_type": {
+                    "type": "string",
+                    "enum": [
+                        "Making",
+                        "Taking",
+                        "Unknown"
+                    ]
+                },
+                "final_asset_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "id": {
+                    "type": "object",
+                    "properties": {
+                        "account_id": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "bo_account_id": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "gw_order_id": {
+                            "type": "object",
+                            "properties": {
+                                "gw_id": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "gw_order_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            },
+                            "required": [
+                                "gw_id",
+                                "gw_order_id"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "account_id",
+                        "bo_account_id",
+                        "gw_order_id"
+                    ]
+                },
+                "order_status": {
+                    "type": "string",
+                    "enum": [
+                        "AcceptedByGW",
+                        "RejectedByGW",
+                        "AcceptedByExchange",
+                        "RejectedByExchange",
+                        "PartiallyFilled",
+                        "Closed"
+                    ]
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "side": {
+                    "type": "string",
+                    "enum": [
+                        "Buy",
+                        "Sell"
+                    ]
+                },
+                "tif": {
+                    "type": "string",
+                    "enum": [
+                        "None",
+                        "GoodTillCancel",
+                        "GoodTillEod",
+                        "FillOrKill",
+                        "FillAndKill",
+                        "GoodTillTime"
+                    ]
+                },
+                "trader_liquidity_type": {
+                    "type": "string",
+                    "enum": [
+                        "Making",
+                        "Taking",
+                        "Unknown"
+                    ]
+                }
+            },
+            "required": [
+                "final_asset_id",
+                "id",
+                "order_status",
+                "price",
+                "quantity",
+                "side",
+                "tif",
+                "trader_liquidity_type"
+            ]
+        },
+        "TradeEventsOutput": {
+            "type": "object",
+            "properties": {
+                "accepted_by_exchange": {
+                    "type": "object",
+                    "properties": {
+                        "order_data": {
+                            "type": "object",
+                            "properties": {
+                                "client_order_id": {
+                                    "type": "string"
+                                },
+                                "exchange_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                },
+                                "final_asset_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "id": {
+                                    "type": "object",
+                                    "properties": {
+                                        "account_id": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        "bo_account_id": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "gw_order_id": {
+                                            "type": "object",
+                                            "properties": {
+                                                "gw_id": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "gw_order_id": {
+                                                    "type": "integer",
+                                                    "format": "int32"
+                                                }
+                                            },
+                                            "required": [
+                                                "gw_id",
+                                                "gw_order_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "account_id",
+                                        "bo_account_id",
+                                        "gw_order_id"
+                                    ]
+                                },
+                                "order_status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AcceptedByGW",
+                                        "RejectedByGW",
+                                        "AcceptedByExchange",
+                                        "RejectedByExchange",
+                                        "PartiallyFilled",
+                                        "Closed"
+                                    ]
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "side": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Buy",
+                                        "Sell"
+                                    ]
+                                },
+                                "tif": {
+                                    "type": "string",
+                                    "enum": [
+                                        "None",
+                                        "GoodTillCancel",
+                                        "GoodTillEod",
+                                        "FillOrKill",
+                                        "FillAndKill",
+                                        "GoodTillTime"
+                                    ]
+                                },
+                                "trader_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "final_asset_id",
+                                "id",
+                                "order_status",
+                                "price",
+                                "quantity",
+                                "side",
+                                "tif",
+                                "trader_liquidity_type"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "order_data"
+                    ]
+                },
+                "accepted_by_jupiter": {
+                    "type": "object",
+                    "properties": {
+                        "order_data": {
+                            "type": "object",
+                            "properties": {
+                                "client_order_id": {
+                                    "type": "string"
+                                },
+                                "exchange_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                },
+                                "final_asset_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "id": {
+                                    "type": "object",
+                                    "properties": {
+                                        "account_id": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        "bo_account_id": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "gw_order_id": {
+                                            "type": "object",
+                                            "properties": {
+                                                "gw_id": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "gw_order_id": {
+                                                    "type": "integer",
+                                                    "format": "int32"
+                                                }
+                                            },
+                                            "required": [
+                                                "gw_id",
+                                                "gw_order_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "account_id",
+                                        "bo_account_id",
+                                        "gw_order_id"
+                                    ]
+                                },
+                                "order_status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AcceptedByGW",
+                                        "RejectedByGW",
+                                        "AcceptedByExchange",
+                                        "RejectedByExchange",
+                                        "PartiallyFilled",
+                                        "Closed"
+                                    ]
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "side": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Buy",
+                                        "Sell"
+                                    ]
+                                },
+                                "tif": {
+                                    "type": "string",
+                                    "enum": [
+                                        "None",
+                                        "GoodTillCancel",
+                                        "GoodTillEod",
+                                        "FillOrKill",
+                                        "FillAndKill",
+                                        "GoodTillTime"
+                                    ]
+                                },
+                                "trader_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "final_asset_id",
+                                "id",
+                                "order_status",
+                                "price",
+                                "quantity",
+                                "side",
+                                "tif",
+                                "trader_liquidity_type"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "order_data"
+                    ]
+                },
+                "cancel": {
+                    "type": "object",
+                    "properties": {
+                        "canceled_quantity": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "exchange_exec_id": {
+                            "type": "string"
+                        },
+                        "exchange_timestamp_epoch_nanos": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    "required": [
+                        "canceled_quantity"
+                    ]
+                },
+                "fill_from_exchange": {
+                    "type": "object",
+                    "properties": {
+                        "fill": {
+                            "type": "object",
+                            "properties": {
+                                "exchange_exec_id": {
+                                    "type": "string"
+                                },
+                                "exchange_timestamp_epoch_nanos": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "fill_price": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "filled_quantity": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "required": [
+                                "fill_price",
+                                "filled_quantity"
+                            ]
+                        },
+                        "order_data": {
+                            "type": "object",
+                            "properties": {
+                                "client_order_id": {
+                                    "type": "string"
+                                },
+                                "exchange_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                },
+                                "final_asset_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "id": {
+                                    "type": "object",
+                                    "properties": {
+                                        "account_id": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        "bo_account_id": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "gw_order_id": {
+                                            "type": "object",
+                                            "properties": {
+                                                "gw_id": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "gw_order_id": {
+                                                    "type": "integer",
+                                                    "format": "int32"
+                                                }
+                                            },
+                                            "required": [
+                                                "gw_id",
+                                                "gw_order_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "account_id",
+                                        "bo_account_id",
+                                        "gw_order_id"
+                                    ]
+                                },
+                                "order_status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AcceptedByGW",
+                                        "RejectedByGW",
+                                        "AcceptedByExchange",
+                                        "RejectedByExchange",
+                                        "PartiallyFilled",
+                                        "Closed"
+                                    ]
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "side": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Buy",
+                                        "Sell"
+                                    ]
+                                },
+                                "tif": {
+                                    "type": "string",
+                                    "enum": [
+                                        "None",
+                                        "GoodTillCancel",
+                                        "GoodTillEod",
+                                        "FillOrKill",
+                                        "FillAndKill",
+                                        "GoodTillTime"
+                                    ]
+                                },
+                                "trader_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "final_asset_id",
+                                "id",
+                                "order_status",
+                                "price",
+                                "quantity",
+                                "side",
+                                "tif",
+                                "trader_liquidity_type"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "fill",
+                        "order_data"
+                    ]
+                },
+                "virtual_fill": {
+                    "type": "object",
+                    "properties": {
+                        "order_data": {
+                            "type": "object",
+                            "properties": {
+                                "client_order_id": {
+                                    "type": "string"
+                                },
+                                "exchange_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                },
+                                "final_asset_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "id": {
+                                    "type": "object",
+                                    "properties": {
+                                        "account_id": {
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        "bo_account_id": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        },
+                                        "gw_order_id": {
+                                            "type": "object",
+                                            "properties": {
+                                                "gw_id": {
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                "gw_order_id": {
+                                                    "type": "integer",
+                                                    "format": "int32"
+                                                }
+                                            },
+                                            "required": [
+                                                "gw_id",
+                                                "gw_order_id"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "account_id",
+                                        "bo_account_id",
+                                        "gw_order_id"
+                                    ]
+                                },
+                                "order_status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AcceptedByGW",
+                                        "RejectedByGW",
+                                        "AcceptedByExchange",
+                                        "RejectedByExchange",
+                                        "PartiallyFilled",
+                                        "Closed"
+                                    ]
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "side": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Buy",
+                                        "Sell"
+                                    ]
+                                },
+                                "tif": {
+                                    "type": "string",
+                                    "enum": [
+                                        "None",
+                                        "GoodTillCancel",
+                                        "GoodTillEod",
+                                        "FillOrKill",
+                                        "FillAndKill",
+                                        "GoodTillTime"
+                                    ]
+                                },
+                                "trader_liquidity_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Making",
+                                        "Taking",
+                                        "Unknown"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "final_asset_id",
+                                "id",
+                                "order_status",
+                                "price",
+                                "quantity",
+                                "side",
+                                "tif",
+                                "trader_liquidity_type"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "order_data"
+                    ]
+                }
+            }
+        }
+    },
+    "paths": {
+        "/open_orders": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/OrderData"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "bo_account_id",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "query",
+                        "name": "final_asset_id",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ]
+            }
+        },
+        "/trade_events_output": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/TradeEventsOutput"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "info": {
+        "version": "",
+        "title": ""
+    }
+}
